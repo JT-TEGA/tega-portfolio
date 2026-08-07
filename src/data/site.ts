@@ -42,7 +42,7 @@ export const navLinks = [
 ] as const;
 
 export const aboutParagraphs = [
-  "I recently graduated with a B.Sc. in Computer Science from Pan-Atlantic University, Lagos. I've completed internships at both Cyberspace Limited and MTN Nigeria, working on everything from network operations center monitoring to fiber optic transmission systems.",
+  "I completed my B.Sc. in Computer Science at Pan-Atlantic University, Lagos, with graduation set for December 2026. I've completed internships at both Cyberspace Limited and MTN Nigeria, working on everything from network operations center monitoring to fiber optic transmission systems.",
   "Beyond engineering, I run Retro Locker — a Gen Z streetwear brand on Instagram — which taught me digital marketing, branding, and building a business from scratch. I'm currently focused on fullstack development and AI automation, and I'm actively looking for opportunities where I can build, ship, and grow.",
 ];
 
