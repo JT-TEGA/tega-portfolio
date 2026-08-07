@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Mail, MapPin, Send } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/brand-icons";
+import { GitHubIcon, LinkedInIcon } from "@/components/brand-icons";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Reveal, Section, SectionHeading } from "@/components/ui";
 import { profile } from "@/data/site";
@@ -18,13 +18,13 @@ const details = [
     label: "GitHub",
     value: "github.com/JT-TEGA",
     href: profile.github,
-    Icon: GithubIcon,
+    Icon: GitHubIcon,
   },
   {
     label: "LinkedIn",
     value: "linkedin.com/in/oghenetega-ukpe",
     href: profile.linkedin,
-    Icon: LinkedinIcon,
+    Icon: LinkedInIcon,
   },
   { label: "Location", value: profile.location, href: null, Icon: MapPin },
 ];

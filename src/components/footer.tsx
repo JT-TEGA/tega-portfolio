@@ -1,10 +1,10 @@
 import { Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/brand-icons";
+import { GitHubIcon, LinkedInIcon } from "@/components/brand-icons";
 import { profile } from "@/data/site";
 
 const socials = [
-  { href: profile.github, label: "GitHub", Icon: GithubIcon },
-  { href: profile.linkedin, label: "LinkedIn", Icon: LinkedinIcon },
+  { href: profile.github, label: "GitHub", Icon: GitHubIcon },
+  { href: profile.linkedin, label: "LinkedIn", Icon: LinkedInIcon },
   { href: `mailto:${profile.email}`, label: "Email", Icon: Mail },
 ];
 

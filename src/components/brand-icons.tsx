@@ -2,10 +2,14 @@ import type { SVGProps } from "react";
 
 /**
  * lucide-react v1 removed brand marks, so GitHub and LinkedIn live here as
- * small inline SVGs with the same `className` API as the lucide icons.
+ * inline SVGs. They mirror the lucide API: an optional `className` and
+ * `fill="currentColor"` so they inherit the surrounding text colour.
  */
 
-export function GithubIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
+export function GitHubIcon({
+  className = "w-5 h-5",
+  ...props
+}: SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -19,7 +23,10 @@ export function GithubIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function LinkedinIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
+export function LinkedInIcon({
+  className = "w-5 h-5",
+  ...props
+}: SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"

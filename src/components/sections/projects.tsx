@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, Star } from "lucide-react";
-import { GithubIcon } from "@/components/brand-icons";
+import { GitHubIcon } from "@/components/brand-icons";
 import { Reveal, Section, SectionHeading, Tag } from "@/components/ui";
 import { featuredProject, projects, type Project } from "@/data/site";
 
@@ -41,7 +41,7 @@ function ProjectLink({ project }: { project: Project }) {
       className="inline-flex items-center gap-2 rounded-full border border-navy-200 px-4 py-2 text-sm font-semibold text-navy-800 transition-colors hover:bg-navy-50 dark:border-slate-600 dark:text-slate-100 dark:hover:bg-slate-800"
     >
       {isGithub ? (
-        <GithubIcon className="h-4 w-4" />
+        <GitHubIcon className="h-4 w-4" />
       ) : (
         <ArrowUpRight className="h-4 w-4" />
       )}
