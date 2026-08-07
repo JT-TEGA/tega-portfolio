@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tega Ukpe — Portfolio
 
-## Getting Started
+Personal developer portfolio for **Oghenetega Stephen Ukpe** — a single-page,
+fully responsive site built with the Next.js App Router.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 (App Router) + React 19
+- TypeScript
+- Tailwind CSS v4
+- Framer Motion (subtle fade / slide-up / stagger only)
+- Lucide React icons
+- Deployed on Vercel — no database, fully static
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/
+    layout.tsx      root layout, Inter font, metadata, theme bootstrap
+    page.tsx        composes every section in order
+    globals.css     Tailwind theme tokens, dark variant, scroll behaviour
+    icon.svg        favicon
+  components/
+    navbar.tsx      sticky nav, blur on scroll, IntersectionObserver active link
+    footer.tsx
+    ui.tsx          Container / Section / Reveal / SectionHeading / Tag / Card
+    theme-provider.tsx   dark mode, class on <html>, persisted to localStorage
+    brand-icons.tsx      GitHub + LinkedIn marks (lucide v1 dropped brand icons)
+    sections/       hero, about, skills, projects, experience, education,
+                    building, contact
+  data/
+    site.ts         all copy and content — edit here, not in the components
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Things to replace
 
-## Learn More
+| What | Where |
+| --- | --- |
+| Real CV | `public/cv.pdf` (currently a placeholder) |
+| Profile photo | `src/components/sections/about.tsx` — swap the `OU` initials circle for `next/image` |
+| Project screenshots | `src/components/sections/projects.tsx` — the `ProjectThumb` placeholder |
 
-To learn more about Next.js, take a look at the following resources:
+## Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Dark mode is class-based (`.dark` on `<html>`). An inline script in the root
+  layout applies the stored or system preference before first paint, so there is
+  no flash of the wrong theme.
+- The contact form has no backend — it builds a `mailto:` link and opens the
+  visitor's email client.
+- All animations respect the OS "reduce motion" setting via `MotionConfig`.
