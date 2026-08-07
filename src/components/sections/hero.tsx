@@ -74,7 +74,7 @@ export function Hero() {
           >
             <motion.a
               href={profile.cv}
-              download
+              download="Oghenetega-Ukpe-CV.pdf"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2 }}
