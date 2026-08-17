@@ -63,7 +63,7 @@ export function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "border-b border-navy-100/80 bg-white/80 backdrop-blur-md dark:border-slate-700/60 dark:bg-[#0f172a]/80"
+          ? "border-b border-gray-100 bg-white/80 backdrop-blur-md dark:border-gray-800 dark:bg-[#0f172a]/80"
           : "border-b border-transparent bg-transparent"
       }`}
     >
@@ -73,10 +73,10 @@ export function Navbar() {
           className="flex items-center gap-3"
           aria-label={`${profile.shortName} — back to top`}
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy-800 text-sm font-semibold tracking-tight text-white dark:bg-slate-200 dark:text-navy-800">
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 font-mono text-xs tracking-wider text-navy-800 dark:border-gray-700 dark:text-slate-100">
             {profile.navInitials}
           </span>
-          <span className="hidden text-sm font-semibold tracking-tight text-navy-800 sm:block dark:text-slate-100">
+          <span className="hidden font-mono text-sm tracking-wide text-navy-800 sm:block dark:text-slate-100">
             {profile.shortName}
           </span>
         </a>
@@ -89,17 +89,17 @@ export function Navbar() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className={`relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors ${
+                    className={`relative block px-3 py-2 font-mono text-sm lowercase tracking-wide transition-colors ${
                       isActive
                         ? "text-navy-800 dark:text-white"
-                        : "text-[#56637a] hover:text-navy-800 dark:text-slate-400 dark:hover:text-slate-100"
+                        : "text-gray-500 hover:text-navy-800 dark:text-gray-400 dark:hover:text-white"
                     }`}
                   >
                     {link.label}
                     {isActive ? (
                       <motion.span
                         layoutId="nav-active"
-                        className="absolute inset-0 -z-10 rounded-full bg-navy-50 dark:bg-slate-800"
+                        className="absolute inset-x-3 -bottom-px h-0.5 bg-navy dark:bg-sky-500"
                         transition={{ duration: 0.25, ease: "easeOut" }}
                       />
                     ) : null}
@@ -115,7 +115,7 @@ export function Navbar() {
             aria-label={
               theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
             }
-            className="ml-1 flex h-9 w-9 items-center justify-center rounded-full border border-navy-100 text-navy-600 transition-colors hover:bg-navy-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+            className="ml-1 flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 text-gray-500 transition-colors hover:bg-gray-50 hover:text-navy-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
           >
             {theme === "dark" ? (
               <Sun className="h-4 w-4" />
@@ -129,7 +129,7 @@ export function Navbar() {
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-navy-100 text-navy-600 transition-colors hover:bg-navy-50 md:hidden dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 text-gray-500 transition-colors hover:bg-gray-50 hover:text-navy-800 md:hidden dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
           >
             {menuOpen ? (
               <X className="h-4 w-4" />
@@ -147,7 +147,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="border-b border-navy-100 bg-white px-6 pb-6 md:hidden dark:border-slate-700 dark:bg-[#0f172a]"
+            className="border-b border-gray-100 bg-white px-6 pb-6 md:hidden dark:border-gray-800 dark:bg-[#0f172a]"
           >
             <ul className="flex flex-col gap-1">
               {navLinks.map((link) => (
@@ -155,10 +155,10 @@ export function Navbar() {
                   <a
                     href={link.href}
                     onClick={closeMenu}
-                    className={`block rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
+                    className={`block border-l-2 px-4 py-3 font-mono text-sm lowercase tracking-wide transition-colors ${
                       activeSection === link.href.slice(1)
-                        ? "bg-navy-50 text-navy-800 dark:bg-slate-800 dark:text-white"
-                        : "text-[#56637a] hover:bg-navy-50 dark:text-slate-400 dark:hover:bg-slate-800"
+                        ? "border-l-navy text-navy-800 dark:border-l-sky-500 dark:text-white"
+                        : "border-l-transparent text-gray-500 hover:text-navy-800 dark:text-gray-400 dark:hover:text-white"
                     }`}
                   >
                     {link.label}

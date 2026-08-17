@@ -1,7 +1,7 @@
 "use client";
 
 import { GraduationCap } from "lucide-react";
-import { Card, Reveal, Section, SectionHeading, Tag } from "@/components/ui";
+import { Reveal, Section, SectionHeading } from "@/components/ui";
 import { education } from "@/data/site";
 
 export function Education() {
@@ -10,37 +10,37 @@ export function Education() {
       <SectionHeading eyebrow="Education" title="Education" />
 
       <Reveal className="mt-12 block">
-        <Card hover={false}>
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-6">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-navy-50 text-navy-600 dark:bg-slate-800 dark:text-slate-300">
-              <GraduationCap className="h-6 w-6" />
-            </span>
+        <div className="rounded-xl border border-gray-200 p-6 dark:border-gray-700">
+          <div className="flex items-start gap-4">
+            <GraduationCap
+              className="mt-0.5 h-5 w-5 shrink-0 text-gray-400 dark:text-gray-500"
+              strokeWidth={1.5}
+              aria-hidden
+            />
 
             <div className="flex-1">
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                <h3 className="text-lg font-semibold text-navy-800 dark:text-slate-100">
+                <h3 className="text-lg font-bold tracking-tight text-navy-800 dark:text-slate-100">
                   {education.school}
                 </h3>
-                <span className="text-sm font-medium text-[#56637a] dark:text-slate-400">
+                <span className="font-mono text-sm text-gray-400 dark:text-gray-500">
                   {education.year}
                 </span>
               </div>
 
-              <p className="mt-1 text-base text-navy-500 dark:text-slate-300">
+              <p className="mt-1 text-base text-gray-600 dark:text-gray-400">
                 {education.degree}
               </p>
 
-              <p className="mt-6 text-xs font-semibold uppercase tracking-[0.16em] text-navy-400 dark:text-slate-500">
+              <p className="mt-6 font-mono text-xs tracking-wider text-gray-400 dark:text-gray-500">
                 Relevant Coursework
               </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {education.coursework.map((course) => (
-                  <Tag key={course}>{course}</Tag>
-                ))}
-              </div>
+              <p className="mt-2 font-mono text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                {education.coursework.join(" / ")}
+              </p>
             </div>
           </div>
-        </Card>
+        </div>
       </Reveal>
     </Section>
   );

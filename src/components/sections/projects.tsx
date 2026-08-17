@@ -1,34 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowUpRight, Star } from "lucide-react";
 import { GitHubIcon } from "@/components/brand-icons";
-import { Reveal, Section, SectionHeading, Tag } from "@/components/ui";
+import { Reveal, Section, SectionHeading } from "@/components/ui";
 import { featuredProject, projects, type Project } from "@/data/site";
 
-/** Placeholder for a screenshot the user will drop in later. */
-function ProjectThumb({
-  project,
-  className = "",
-}: {
-  project: Project;
-  className?: string;
-}) {
-  const Icon = project.icon;
-  const business = project.kind === "business";
-  return (
-    <div
-      className={`flex items-center justify-center rounded-xl border border-dashed ${
-        business
-          ? "border-amber-300 bg-amber-50 text-amber-600 dark:border-amber-500/40 dark:bg-amber-500/10 dark:text-amber-300"
-          : "border-navy-200 bg-navy-50 text-navy-400 dark:border-slate-600 dark:bg-slate-800/60 dark:text-slate-400"
-      } ${className}`}
-      aria-hidden
-    >
-      <Icon className="h-10 w-10" strokeWidth={1.5} />
-    </div>
-  );
-}
+const cardClass =
+  "flex h-full flex-col rounded-xl border border-gray-200 p-6 transition-colors hover:border-navy dark:border-gray-700 dark:hover:border-sky-500";
 
 function ProjectLink({ project }: { project: Project }) {
   if (!project.href) return null;
@@ -38,121 +16,102 @@ function ProjectLink({ project }: { project: Project }) {
       href={project.href}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex items-center gap-2 rounded-full border border-navy-200 px-4 py-2 text-sm font-semibold text-navy-800 transition-colors hover:bg-navy-50 dark:border-slate-600 dark:text-slate-100 dark:hover:bg-slate-800"
+      className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-navy-800 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-slate-100 dark:hover:bg-gray-800"
     >
-      {isGithub ? (
-        <GitHubIcon className="h-4 w-4" />
-      ) : (
-        <ArrowUpRight className="h-4 w-4" />
-      )}
+      {isGithub ? <GitHubIcon className="h-4 w-4" /> : null}
       {project.linkLabel}
       <span className="sr-only"> — {project.title}</span>
+      <ArrowUpRight className="h-4 w-4" />
     </a>
+  );
+}
+
+/** Slash-separated stack line that closes out each card. */
+function TechLine({ tech }: { tech: string[] }) {
+  return (
+    <p className="mt-6 border-t border-gray-100 pt-4 font-mono text-xs leading-relaxed text-gray-500 dark:border-gray-800 dark:text-gray-500">
+      {tech.join(" / ")}
+    </p>
   );
 }
 
 function FeaturedCard() {
   const project = featuredProject;
+  const Icon = project.icon;
   return (
     <Reveal>
-      <motion.article
-        whileHover={{ y: -4 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-        className="overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-card transition-shadow duration-300 hover:shadow-card-hover dark:border-slate-700/70 dark:bg-[#1e293b]"
-      >
-        <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[1fr_1.15fr] lg:gap-10">
-          <ProjectThumb project={project} className="min-h-52 lg:min-h-full" />
-
-          <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-navy-800 px-3 py-1 text-xs font-semibold text-white dark:bg-slate-100 dark:text-navy-800">
-                <Star className="h-3 w-3 fill-current" />
-                Featured Project
-              </span>
-              {project.status ? (
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  {project.status}
-                </span>
-              ) : null}
-            </div>
-
-            <h3 className="mt-4 text-2xl font-bold tracking-tight text-navy-800 sm:text-3xl dark:text-white">
-              {project.title}
-            </h3>
-
-            <p className="mt-4 text-base leading-relaxed text-[#56637a] dark:text-slate-400">
-              {project.description}
-            </p>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              {project.tech?.map((tech) => (
-                <Tag key={tech}>{tech}</Tag>
-              ))}
-            </div>
-
-            <div className="mt-7">
-              <ProjectLink project={project} />
-            </div>
-          </div>
+      <article className={`${cardClass} sm:p-8`}>
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="inline-flex items-center gap-1.5 font-mono text-xs tracking-wider text-navy-800 dark:text-slate-100">
+            <Star className="h-3 w-3 fill-current" />
+            Featured Project
+          </span>
+          {project.status ? (
+            <span className="inline-flex items-center gap-1.5 font-mono text-xs tracking-wider text-gray-500 dark:text-gray-400">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              {project.status}
+            </span>
+          ) : null}
         </div>
-      </motion.article>
+
+        <div className="mt-5 flex items-start gap-3">
+          <Icon
+            className="mt-1 h-6 w-6 shrink-0 text-gray-400 dark:text-gray-500"
+            strokeWidth={1.5}
+            aria-hidden
+          />
+          <h3 className="text-2xl font-bold tracking-tight text-navy-800 sm:text-3xl dark:text-white">
+            {project.title}
+          </h3>
+        </div>
+
+        <p className="mt-4 max-w-3xl flex-1 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+          {project.description}
+        </p>
+
+        <div className="mt-6">
+          <ProjectLink project={project} />
+        </div>
+
+        {project.tech ? <TechLine tech={project.tech} /> : null}
+      </article>
     </Reveal>
   );
 }
 
-function CodeProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project }: { project: Project }) {
+  const Icon = project.icon;
   return (
-    <motion.article
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.25, ease: "easeOut" }}
-      className="flex h-full flex-col rounded-2xl border border-navy-100 bg-white p-6 shadow-card transition-shadow duration-300 hover:shadow-card-hover dark:border-slate-700/70 dark:bg-[#1e293b]"
-    >
-      <ProjectThumb project={project} className="h-36" />
+    <article className={cardClass}>
+      {project.badge ? (
+        <p className="mb-4 font-mono text-xs tracking-wider text-gray-400 dark:text-gray-500">
+          {project.badge}
+        </p>
+      ) : null}
 
-      <h3 className="mt-5 text-lg font-semibold text-navy-800 dark:text-slate-100">
-        {project.title}
-      </h3>
+      <div className="flex items-start gap-3">
+        <Icon
+          className="mt-0.5 h-5 w-5 shrink-0 text-gray-400 dark:text-gray-500"
+          strokeWidth={1.5}
+          aria-hidden
+        />
+        <h3 className="text-lg font-bold tracking-tight text-navy-800 dark:text-slate-100">
+          {project.title}
+        </h3>
+      </div>
 
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-[#56637a] dark:text-slate-400">
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
         {project.description}
       </p>
 
-      <div className="mt-5 flex flex-wrap gap-2">
-        {project.tech?.map((tech) => (
-          <Tag key={tech}>{tech}</Tag>
-        ))}
-      </div>
+      {project.href ? (
+        <div className="mt-5">
+          <ProjectLink project={project} />
+        </div>
+      ) : null}
 
-      <div className="mt-6">
-        <ProjectLink project={project} />
-      </div>
-    </motion.article>
-  );
-}
-
-/** Non-code work gets its own amber treatment so it reads differently. */
-function BusinessProjectCard({ project }: { project: Project }) {
-  return (
-    <motion.article
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.25, ease: "easeOut" }}
-      className="flex h-full flex-col rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-6 shadow-card transition-shadow duration-300 hover:shadow-card-hover dark:border-amber-500/30 dark:from-amber-500/10 dark:to-[#1e293b]"
-    >
-      <ProjectThumb project={project} className="h-36" />
-
-      <span className="mt-5 inline-flex w-fit items-center rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-300">
-        {project.badge}
-      </span>
-
-      <h3 className="mt-3 text-lg font-semibold text-navy-800 dark:text-slate-100">
-        {project.title}
-      </h3>
-
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-[#56637a] dark:text-slate-400">
-        {project.description}
-      </p>
-    </motion.article>
+      {project.tech ? <TechLine tech={project.tech} /> : null}
+    </article>
   );
 }
 
@@ -165,17 +124,13 @@ export function Projects() {
         description="A mix of shipped client work, full-stack university projects, and the business side of things."
       />
 
-      <div className="mt-12 space-y-6">
+      <div className="mt-12 space-y-5">
         <FeaturedCard />
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2">
           {projects.map((project, index) => (
             <Reveal key={project.title} delay={index * 0.06} className="h-full">
-              {project.kind === "business" ? (
-                <BusinessProjectCard project={project} />
-              ) : (
-                <CodeProjectCard project={project} />
-              )}
+              <ProjectCard project={project} />
             </Reveal>
           ))}
         </div>

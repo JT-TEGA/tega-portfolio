@@ -10,9 +10,17 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-navy-100 py-10 dark:border-slate-800">
-      <div className="mx-auto flex w-full max-w-[1100px] flex-col items-center gap-4 px-6 sm:px-8">
-        <div className="flex items-center gap-2">
+    <footer className="border-t border-gray-100 py-6 dark:border-gray-800">
+      <div className="mx-auto flex w-full max-w-[1100px] flex-col items-center justify-between gap-4 px-6 font-mono text-xs text-gray-400 sm:flex-row sm:px-8 dark:text-gray-500">
+        <a
+          href="#top"
+          className="tracking-wider transition-colors hover:text-navy-800 dark:hover:text-white"
+          aria-label={`${profile.shortName} — back to top`}
+        >
+          {profile.navInitials}
+        </a>
+
+        <div className="flex items-center gap-4">
           {socials.map(({ href, label, Icon }) => (
             <a
               key={label}
@@ -20,16 +28,14 @@ export function Footer() {
               aria-label={label}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noreferrer" : undefined}
-              className="flex h-9 w-9 items-center justify-center rounded-full text-navy-400 transition-colors hover:bg-navy-50 hover:text-navy-800 dark:text-slate-500 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+              className="transition-colors hover:text-navy-800 dark:hover:text-white"
             >
               <Icon className="h-4 w-4" />
             </a>
           ))}
         </div>
 
-        <p className="text-xs text-[#56637a] dark:text-slate-500">
-          © 2026 Oghenetega Ukpe. Built with Next.js.
-        </p>
+        <p>© 2026 Oghenetega Ukpe. Built with Next.js.</p>
       </div>
     </footer>
   );

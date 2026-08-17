@@ -21,20 +21,29 @@ export function Section({
   id,
   children,
   muted = false,
+  divider = true,
+  decor,
   className = "",
 }: {
   id: string;
   children: ReactNode;
   muted?: boolean;
+  /** Thin rule along the top edge, separating this section from the previous. */
+  divider?: boolean;
+  /** Background line-art, rendered outside the container and behind the copy. */
+  decor?: ReactNode;
   className?: string;
 }) {
   return (
     <section
       id={id}
-      className={`scroll-mt-24 py-20 sm:py-28 ${
+      className={`scroll-mt-24 py-24 md:py-32 ${
+        decor ? "relative overflow-hidden" : ""
+      } ${divider ? "border-t border-gray-100 dark:border-gray-800" : ""} ${
         muted ? "bg-navy-50 dark:bg-[#131c2e]" : ""
       } ${className}`}
     >
+      {decor}
       <Container>{children}</Container>
     </section>
   );
@@ -76,56 +85,22 @@ export function SectionHeading({
 }) {
   return (
     <Reveal className={align === "center" ? "text-center" : ""}>
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-400 dark:text-slate-400">
-        {eyebrow}
+      <p className="font-mono text-sm tracking-wider text-gray-400 dark:text-gray-500">
+        <span aria-hidden>... </span>/{eyebrow}
+        <span aria-hidden> ...</span>
       </p>
-      <h2 className="mt-3 text-3xl font-bold tracking-tight text-navy-800 sm:text-4xl dark:text-slate-100">
+      <h2 className="mt-4 text-4xl font-bold leading-[1.1] tracking-tight text-navy-800 md:text-5xl dark:text-slate-100">
         {title}
       </h2>
       {description ? (
         <p
-          className={`mt-4 max-w-2xl text-base leading-relaxed text-[#56637a] dark:text-slate-400 ${
+          className={`mt-5 max-w-2xl text-base leading-relaxed text-gray-600 dark:text-gray-400 ${
             align === "center" ? "mx-auto" : ""
           }`}
         >
           {description}
         </p>
       ) : null}
-      <div
-        className={`mt-6 h-px w-16 bg-navy-200 dark:bg-slate-700 ${
-          align === "center" ? "mx-auto" : ""
-        }`}
-      />
     </Reveal>
-  );
-}
-
-export function Tag({ children }: { children: ReactNode }) {
-  return (
-    <span className="inline-flex items-center rounded-full border border-navy-100 bg-navy-50 px-3 py-1 text-xs font-medium text-navy-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
-      {children}
-    </span>
-  );
-}
-
-export function Card({
-  children,
-  className = "",
-  hover = true,
-}: {
-  children: ReactNode;
-  className?: string;
-  hover?: boolean;
-}) {
-  return (
-    <motion.div
-      whileHover={hover ? { y: -4 } : undefined}
-      transition={{ duration: 0.25, ease: "easeOut" }}
-      className={`rounded-2xl border border-navy-100 bg-white p-6 shadow-card transition-shadow duration-300 dark:border-slate-700/70 dark:bg-[#1e293b] ${
-        hover ? "hover:shadow-card-hover" : ""
-      } ${className}`}
-    >
-      {children}
-    </motion.div>
   );
 }
