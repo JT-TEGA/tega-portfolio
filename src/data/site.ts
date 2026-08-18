@@ -156,7 +156,7 @@ export const featuredProject: Project = {
     "Resend",
     "NextAuth.js",
   ],
-  href: "https://xlbillboardsng.com",
+  href: "https://xlbillboards.vercel.app",
   linkLabel: "Visit Site",
   status: "Live",
   kind: "code",
