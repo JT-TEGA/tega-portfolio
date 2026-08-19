@@ -1,4 +1,5 @@
 import {
+  BrainCircuit,
   Code2,
   Database,
   Fingerprint,
@@ -83,12 +84,20 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Backend",
     icon: Server,
-    skills: ["Node.js", "Express.js", "NestJS", "REST APIs"],
+    skills: [
+      "Node.js",
+      "Express.js",
+      "NestJS",
+      "FastAPI",
+      "pandas",
+      "Claude API",
+      "REST APIs",
+    ],
   },
   {
     title: "Databases",
     icon: Database,
-    skills: ["MySQL", "PostgreSQL"],
+    skills: ["MySQL", "PostgreSQL", "SQLite"],
   },
   {
     title: "Tools & Platforms",
@@ -100,6 +109,7 @@ export const skillCategories: SkillCategory[] = [
       "MySQL Workbench",
       "Streamlit",
       "Vercel",
+      "Render",
       "CorelDRAW",
     ],
   },
@@ -141,28 +151,47 @@ export type Project = {
 };
 
 export const featuredProject: Project = {
-  title: "XL Billboards Website",
+  title: "LeadFlow AI",
   description:
-    "Corporate website for an outdoor advertising company featuring a searchable billboard inventory database with 25+ locations, vacant site finder with cascading filters, interactive Leaflet maps with GPS coordinates, admin panel with full CRUD, blog system, and email notifications via Resend. Full-stack application deployed on Vercel.",
-  icon: Megaphone,
+    "AI-powered lead qualification tool that turns a messy sales CSV into a ranked pipeline. It normalizes inconsistent dates, budgets, and employee counts, then uses the Claude API to read unstructured conversation notes and extract buying signals — urgency, budget, and decision authority. Each lead is scored across three weighted categories (firmographic fit, behavioral signals, engagement quality) and sorted into Contact Now / Nurture / Disqualify tiers, surfaced through a Bloomberg Terminal-inspired dashboard with a pipeline funnel, score distribution chart, per-lead AI reasoning panel, run history, and Excel export.",
+  icon: BrainCircuit,
   tech: [
-    "Next.js",
-    "TypeScript",
+    "React",
+    "Vite",
     "Tailwind CSS",
-    "Prisma",
-    "Neon PostgreSQL",
-    "Cloudinary",
-    "Leaflet/OpenStreetMap",
-    "Resend",
-    "NextAuth.js",
+    "Python",
+    "FastAPI",
+    "pandas",
+    "Claude API",
+    "SQLite",
+    "Vercel",
+    "Render",
   ],
-  href: "https://xlbillboards.vercel.app",
-  linkLabel: "Visit Site",
+  href: "https://leadflow-ai-peach.vercel.app/",
+  linkLabel: "Live Demo",
   status: "Live",
   kind: "code",
 };
 
 export const projects: Project[] = [
+  {
+    title: "XL Billboards Website",
+    description:
+      "Corporate website for an outdoor advertising company featuring a searchable billboard inventory database with 25+ locations, vacant site finder with cascading filters, interactive Leaflet maps with GPS coordinates, admin panel with full CRUD, blog system, and email notifications via Resend. Full-stack application deployed on Vercel.",
+    icon: Megaphone,
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "Neon PostgreSQL",
+      "Cloudinary",
+      "Leaflet",
+      "NextAuth.js",
+    ],
+    href: "https://xlbillboards.vercel.app",
+    linkLabel: "Visit Site",
+    kind: "code",
+  },
   {
     title: "Clinic Management System",
     description:
