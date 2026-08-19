@@ -16,7 +16,13 @@ const DARK_COLORS = [
   { rgb: "129, 140, 248", alpha: 0.12 },
 ] as const;
 
-const LIGHT_COLOR = { rgb: "26, 35, 50", alpha: 0.08 } as const;
+/**
+ * Carries more alpha than the dark-mode motes because it sits on a near-white
+ * page — a light-on-dark dot reads more strongly than a dark-on-light one at
+ * matching alpha, so the two themes need different numbers to feel equally
+ * present.
+ */
+const LIGHT_COLOR = { rgb: "26, 35, 50", alpha: 0.16 } as const;
 
 /** Midpoint of the 0.1–0.25 opacity range, used to normalise the variance. */
 const OPACITY_MIDPOINT = 0.175;
