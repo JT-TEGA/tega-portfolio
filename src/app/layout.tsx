@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { BackgroundParticles } from "@/components/background-particles";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { ThemeProvider, themeInitScript } from "@/components/theme-provider";
@@ -58,9 +59,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="flex min-h-full flex-col font-sans">
         <ThemeProvider>
+          <BackgroundParticles />
           <MotionPreferences>
             <Navbar />
-            <main className="flex-1">{children}</main>
+            <main className="relative z-10 flex-1">{children}</main>
             <Footer />
           </MotionPreferences>
         </ThemeProvider>

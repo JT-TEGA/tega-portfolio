@@ -94,7 +94,7 @@ export function Hero({ onComplete }: { onComplete?: () => void }) {
   return (
     <section
       id="top"
-      className="relative overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-28"
+      className="relative z-10 overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-28"
     >
       <CircleDecor className="-top-40 -right-40 h-[420px] w-[420px] sm:h-[620px] sm:w-[620px]" />
 

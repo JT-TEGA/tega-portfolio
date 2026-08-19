@@ -10,7 +10,7 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-gray-100 py-6 dark:border-gray-800">
+    <footer className="relative z-10 border-t border-gray-100 py-6 dark:border-gray-800">
       <div className="mx-auto flex w-full max-w-[1100px] flex-col items-center justify-between gap-4 px-6 font-mono text-xs text-gray-400 sm:flex-row sm:px-8 dark:text-gray-500">
         <a
           href="#top"

@@ -37,10 +37,10 @@ export function Section({
   return (
     <section
       id={id}
-      className={`scroll-mt-24 py-24 md:py-32 ${
-        decor ? "relative overflow-hidden" : ""
+      className={`relative z-10 scroll-mt-24 py-24 md:py-32 ${
+        decor ? "overflow-hidden" : ""
       } ${divider ? "border-t border-gray-100 dark:border-gray-800" : ""} ${
-        muted ? "bg-navy-50 dark:bg-[#131c2e]" : ""
+        muted ? "bg-navy-50/80 dark:bg-[#131c2e]/80" : ""
       } ${className}`}
     >
       {decor}
