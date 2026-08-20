@@ -22,7 +22,7 @@ const DARK_COLORS = [
  * matching alpha, so the two themes need different numbers to feel equally
  * present.
  */
-const LIGHT_COLOR = { rgb: "26, 35, 50", alpha: 0.16 } as const;
+const LIGHT_COLOR = { rgb: "26, 35, 50", alpha: 0.24 } as const;
 
 /** Midpoint of the 0.1–0.25 opacity range, used to normalise the variance. */
 const OPACITY_MIDPOINT = 0.175;
