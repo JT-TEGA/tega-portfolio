@@ -1,20 +1,16 @@
 import {
   BrainCircuit,
+  Clapperboard,
   Code2,
   Database,
-  Fingerprint,
-  Gamepad2,
   LayoutDashboard,
   Megaphone,
   Network,
   Server,
   Shirt,
   ShoppingBag,
-  Smile,
+  Smartphone,
   Sparkles,
-  Stethoscope,
-  TrendingUp,
-  UtensilsCrossed,
   Wrench,
   type LucideIcon,
 } from "lucide-react";
@@ -148,6 +144,10 @@ export type Project = {
   status?: string;
   kind: "code" | "business";
   badge?: string;
+  /** Private client work: no public link; the card opens a details modal. */
+  caseStudy?: boolean;
+  /** Screenshot paths under /public, shown in order in the case-study modal. */
+  media?: string[];
 };
 
 export const featuredProject: Project = {
@@ -193,62 +193,46 @@ export const projects: Project[] = [
     kind: "code",
   },
   {
-    title: "Clinic Management System",
+    title: "Style Genie",
     description:
-      "Full-stack clinic management system with a React frontend, NestJS backend, and PostgreSQL database. Features CRUD operations for patient records, appointment management, and a responsive UI.",
-    icon: Stethoscope,
-    tech: ["React", "NestJS", "PostgreSQL"],
-    href: profile.github,
+      "AI-powered wardrobe and outfit recommendation app for the Nigerian market. Users photograph their clothes to build a digital wardrobe, then get outfit recommendations — designed offline-first to work around local connectivity constraints. My final-year capstone project.",
+    icon: Sparkles,
+    tech: [
+      "React Native",
+      "Node.js",
+      "Express",
+      "Python",
+      "ResNet-50",
+      "U2-Net",
+      "OpenCV",
+      "MongoDB Atlas",
+      "AWS S3",
+    ],
+    href: "https://github.com/JT-TEGA/style-genie",
     linkLabel: "GitHub",
+    status: "In Progress",
     kind: "code",
   },
   {
-    title: "Cafeteria Ordering System",
+    title: "Cutroom",
     description:
-      "Ordering platform with separate admin and customer dashboards. Admins manage meals and track orders; customers browse menus and place orders. Built with Streamlit for rapid prototyping and PostgreSQL for data persistence.",
-    icon: UtensilsCrossed,
-    tech: ["Streamlit", "PostgreSQL"],
-    href: profile.github,
+      "An AI-assisted short-form video editor I built for my own gym, fashion, and vlog content. I write a brief, Claude plans the edit, and the pipeline cuts, captions, and renders the video automatically. Now evolving into a standalone app with its own UI.",
+    icon: Clapperboard,
+    tech: ["Claude Code", "FFmpeg", "Whisper", "OpenCV", "Puppeteer"],
+    href: "",
     linkLabel: "GitHub",
+    status: "In Progress",
     kind: "code",
   },
   {
-    title: "Biometric Attendance System",
+    title: "MAXMODE Gadgets & Accessories",
     description:
-      "Desktop application with a login system, biometric attendance tracking, and shift management. Features a GUI for registering employees, recording attendance, and generating shift reports.",
-    icon: Fingerprint,
-    tech: ["Java", "Swing", "MySQL"],
-    href: profile.github,
+      "E-commerce website for a Lagos-based phone and laptop retailer — product catalog and a clean, mobile-first storefront.",
+    icon: Smartphone,
+    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    href: "",
     linkLabel: "GitHub",
     kind: "code",
-  },
-  {
-    title: "ToothFixers Web App",
-    description:
-      "Full-stack dental clinic management system with appointment booking, patient records, and an admin panel for clinic staff. Built as a complete CRUD application with authentication.",
-    icon: Smile,
-    tech: ["React", "Node.js", "Express", "MySQL"],
-    href: profile.github,
-    linkLabel: "GitHub",
-    kind: "code",
-  },
-  {
-    title: "Word Scrambler Game",
-    description:
-      "Interactive spelling game where players unscramble letters to form words. Features a scoring system, letter reveal hints, and multiple difficulty levels.",
-    icon: Gamepad2,
-    tech: ["Java", "Swing"],
-    href: profile.github,
-    linkLabel: "GitHub",
-    kind: "code",
-  },
-  {
-    title: "Google Business Profile Optimization",
-    description:
-      "Helped businesses improve their local online presence through Google Business Profile optimization, local SEO strategy, Google Reviews management, and tailored business descriptions. Demonstrates business understanding alongside technical skills.",
-    icon: TrendingUp,
-    kind: "business",
-    badge: "Business & Marketing",
   },
 ];
 
