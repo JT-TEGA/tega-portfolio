@@ -1,4 +1,5 @@
 import {
+  BellRing,
   BrainCircuit,
   Clapperboard,
   Code2,
@@ -191,6 +192,29 @@ export const projects: Project[] = [
     href: "https://xlbillboards.vercel.app",
     linkLabel: "Visit Site",
     kind: "code",
+  },
+  {
+    title: "XL Billboards — Inventory & Booking Dashboard",
+    description:
+      "A full admin dashboard I built into a live client site (XL Billboards) to run their out-of-home advertising operation. It tracks 70+ billboards across cities, shows a live availability calendar of what's booked, tentative, or free, manages bookings and payments, captures incoming client inquiries with budget and type, and automatically flags campaigns expiring within 30 days so the admin can chase renewals before they lapse.",
+    icon: BellRing,
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+      "Scheduled jobs / cron",
+      "Email notifications",
+    ],
+    status: "Live",
+    kind: "code",
+    caseStudy: true,
+    media: [
+      "/projects/Dashboard.png",
+      "/projects/Availability.png",
+      "/projects/Bookings.png",
+      "/projects/Recent-inquiries.png",
+    ],
   },
   {
     title: "Style Genie",
