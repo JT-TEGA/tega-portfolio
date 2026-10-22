@@ -17,13 +17,13 @@ import {
 } from "lucide-react";
 
 export const profile = {
-  name: "Oghenetega Stephen Ukpe",
+  name: "Tega Ukpe",
   shortName: "Tega Ukpe",
   initials: "OU",
   navInitials: "TU",
   tagline: "Fullstack Developer | AI & Automation Enthusiast",
   intro:
-    "I build practical software solutions and explore how AI and automation can make everyday processes faster and smarter. My experience spans fullstack web development, network engineering, and digital marketing — and I'm always building something new.",
+    "I build practical software solutions and explore how AI and automation can make everyday processes faster and smarter. My experience spans fullstack web development, network engineering, and digital marketing and I'm always building something new.",
   email: "ukpeoghenetega1@gmail.com",
   github: "https://github.com/JT-TEGA",
   linkedin: "https://linkedin.com/in/oghenetega-ukpe",
@@ -41,7 +41,7 @@ export const navLinks = [
 
 export const aboutParagraphs = [
   "I completed my B.Sc. in Computer Science at Pan-Atlantic University, Lagos, with graduation set for December 2026. I've completed internships at both Cyberspace Limited and MTN Nigeria, working on everything from network operations center monitoring to fiber optic transmission systems.",
-  "Beyond engineering, I run Retro Locker — a Gen Z streetwear brand on Instagram — which taught me digital marketing, branding, and building a business from scratch. I'm currently focused on fullstack development and AI automation, and I'm actively looking for opportunities where I can build, ship, and grow.",
+  "Beyond engineering, I run Retro Locker a Gen Z streetwear brand on Instagram — which taught me digital marketing, branding, and building a business from scratch. I'm currently focused on fullstack development and AI automation, and I'm actively looking for opportunities where I can build and grow.",
 ];
 
 export type SkillCategory = {
