@@ -1,6 +1,7 @@
 "use client";
 
-import { Fragment, type ReactNode } from "react";
+import Image from "next/image";
+import { Fragment, useState, type ReactNode } from "react";
 import { Reveal, Section, SectionHeading } from "@/components/ui";
 import { aboutParagraphs, profile } from "@/data/site";
 
@@ -35,6 +36,29 @@ function withEmphasis(text: string): ReactNode[] {
   );
 }
 
+/** Profile photo; falls back to the initials if the file fails to load. */
+function ProfilePhoto() {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <div className="flex h-44 w-44 items-center justify-center rounded-full border border-gray-200 font-mono text-3xl tracking-widest text-navy-800 dark:border-gray-700 dark:text-slate-100">
+        {profile.initials}
+      </div>
+    );
+  }
+  return (
+    <Image
+      src="/profile.png"
+      alt="Tega — Fullstack Developer"
+      width={176}
+      height={176}
+      priority
+      className="h-44 w-44 rounded-full border border-gray-200 object-cover dark:border-gray-700"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 export function About() {
   return (
     <Section id="about">
@@ -42,10 +66,7 @@ export function About() {
 
       <div className="mt-12 grid items-start gap-10 md:grid-cols-[13rem_1fr] md:gap-14">
         <Reveal className="flex justify-center md:justify-start">
-          {/* Placeholder for a real photo — swap for next/image later. */}
-          <div className="flex h-44 w-44 items-center justify-center rounded-2xl border border-gray-200 font-mono text-3xl tracking-widest text-navy-800 dark:border-gray-700 dark:text-slate-100">
-            {profile.initials}
-          </div>
+          <ProfilePhoto />
         </Reveal>
 
         <div className="space-y-6">

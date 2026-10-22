@@ -41,7 +41,7 @@ export const navLinks = [
 
 export const aboutParagraphs = [
   "I completed my B.Sc. in Computer Science at Pan-Atlantic University, Lagos, with graduation set for December 2026. I've completed internships at both Cyberspace Limited and MTN Nigeria, working on everything from network operations center monitoring to fiber optic transmission systems.",
-  "Beyond engineering, I run Retro Locker a Gen Z streetwear brand on Instagram — which taught me digital marketing, branding, and building a business from scratch. I'm currently focused on fullstack development and AI automation, and I'm actively looking for opportunities where I can build and grow.",
+  "Beyond engineering, I run Retro Locker a Gen Z streetwear brand on Instagram which taught me digital marketing, branding, and building a business from scratch. I'm currently focused on fullstack development and AI automation, and I'm actively looking for opportunities where I can build and grow.",
 ];
 
 export type SkillCategory = {
@@ -149,6 +149,10 @@ export type Project = {
   caseStudy?: boolean;
   /** Screenshot paths under /public, shown in order in the case-study modal. */
   media?: string[];
+  /** Media are phone screens: the modal shows them in a row, uncropped. */
+  portraitMedia?: boolean;
+  /** Card thumbnail path under /public; the card shows no image area without it. */
+  image?: string;
 };
 
 export const featuredProject: Project = {
@@ -172,6 +176,7 @@ export const featuredProject: Project = {
   linkLabel: "Live Demo",
   status: "Live",
   kind: "code",
+  image: "/leadflow.png",
 };
 
 export const projects: Project[] = [
@@ -192,6 +197,7 @@ export const projects: Project[] = [
     href: "https://xlbillboards.vercel.app",
     linkLabel: "Visit Site",
     kind: "code",
+    image: "/xlbillboards.jpg",
   },
   {
     title: "XL Billboards — Inventory & Booking Dashboard",
@@ -236,6 +242,9 @@ export const projects: Project[] = [
     linkLabel: "GitHub",
     status: "In Progress",
     kind: "code",
+    image: "/style-genie.png",
+    media: ["/style-genie.png", "/style-genie2.png", "/style-genie3.png"],
+    portraitMedia: true,
   },
   {
     title: "Cutroom",
@@ -247,6 +256,7 @@ export const projects: Project[] = [
     linkLabel: "GitHub",
     status: "In Progress",
     kind: "code",
+    image: "/cutroom.jpg",
   },
   {
     title: "MAXMODE Gadgets & Accessories",
@@ -257,6 +267,7 @@ export const projects: Project[] = [
     href: "",
     linkLabel: "GitHub",
     kind: "code",
+    image: "/maxmode.png",
   },
 ];
 

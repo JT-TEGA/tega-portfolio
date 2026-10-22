@@ -41,12 +41,41 @@ function TechLine({ tech }: { tech: string[] }) {
   );
 }
 
+/** Screenshot bled to the card's top edge; `featured` matches the larger card padding. */
+function CardThumbnail({
+  project,
+  featured = false,
+}: {
+  project: Project;
+  featured?: boolean;
+}) {
+  if (!project.image) return null;
+  return (
+    <div
+      className={`relative -mx-6 -mt-6 mb-5 aspect-video overflow-hidden rounded-t-[calc(0.75rem-1px)] border-b border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-900 ${
+        featured ? "sm:-mx-8 sm:-mt-8 sm:mb-6" : ""
+      }`}
+    >
+      <Image
+        src={project.image}
+        alt={`${project.title} screenshot`}
+        fill
+        priority={featured}
+        sizes={featured ? "(max-width: 1024px) 100vw, 1024px" : "(max-width: 768px) 100vw, 512px"}
+        // Phone screens are portrait: show the whole screen instead of a crop.
+        className={project.portraitMedia ? "object-contain" : "object-cover object-top"}
+      />
+    </div>
+  );
+}
+
 function FeaturedCard() {
   const project = featuredProject;
   const Icon = project.icon;
   return (
     <Reveal>
       <article className={`${cardClass} sm:p-8`}>
+        <CardThumbnail project={project} featured />
         <div className="flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center gap-1.5 font-mono text-xs tracking-wider text-navy-800 dark:text-slate-100">
             <Star className="h-3 w-3 fill-current" />
@@ -95,10 +124,22 @@ function CaseStudyBadge() {
 }
 
 /** Screenshot that degrades to a placeholder if the file is missing. */
-function CaseStudyImage({ src, alt }: { src: string; alt: string }) {
+function CaseStudyImage({
+  src,
+  alt,
+  portrait = false,
+}: {
+  src: string;
+  alt: string;
+  portrait?: boolean;
+}) {
   const [failed, setFailed] = useState(false);
   return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-900">
+    <div
+      className={`relative w-full overflow-hidden rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-900 ${
+        portrait ? "aspect-[9/16]" : "aspect-video"
+      }`}
+    >
       {failed ? (
         <div className="flex h-full flex-col items-center justify-center gap-2 text-gray-400 dark:text-gray-500">
           <ImageOff className="h-6 w-6" strokeWidth={1.5} aria-hidden />
@@ -109,7 +150,7 @@ function CaseStudyImage({ src, alt }: { src: string; alt: string }) {
           src={src}
           alt={alt}
           fill
-          sizes="(max-width: 768px) 100vw, 720px"
+          sizes={portrait ? "(max-width: 768px) 33vw, 240px" : "(max-width: 768px) 100vw, 720px"}
           className="object-contain"
           onError={() => setFailed(true)}
         />
@@ -165,10 +206,10 @@ function CaseStudyModal({
         >
           <div className="flex items-start justify-between gap-4">
             <div>
-              <CaseStudyBadge />
+              {project.caseStudy ? <CaseStudyBadge /> : null}
               <h3
                 id={titleId}
-                className="mt-4 text-2xl font-bold tracking-tight text-navy-800 dark:text-white"
+                className={`${project.caseStudy ? "mt-4" : ""} text-2xl font-bold tracking-tight text-navy-800 dark:text-white`}
               >
                 {project.title}
               </h3>
@@ -188,12 +229,19 @@ function CaseStudyModal({
           </p>
 
           {project.media?.length ? (
-            <div className="mt-6 space-y-4">
+            <div
+              className={
+                project.portraitMedia
+                  ? "mt-6 grid grid-cols-3 gap-3 sm:gap-4"
+                  : "mt-6 space-y-4"
+              }
+            >
               {project.media.map((src, index) => (
                 <CaseStudyImage
                   key={src}
                   src={src}
                   alt={`${project.title} — screenshot ${index + 1}`}
+                  portrait={project.portraitMedia}
                 />
               ))}
             </div>
@@ -209,6 +257,9 @@ function CaseStudyModal({
 function ProjectCard({ project }: { project: Project }) {
   const Icon = project.icon;
   const [modalOpen, setModalOpen] = useState(false);
+  // Public projects with screenshots open the gallery from the thumbnail,
+  // leaving the card's own link button free.
+  const hasGallery = !project.caseStudy && Boolean(project.media?.length);
   return (
     <article
       className={`${cardClass} ${
@@ -217,6 +268,20 @@ function ProjectCard({ project }: { project: Project }) {
           : ""
       }`}
     >
+      {hasGallery ? (
+        <button
+          type="button"
+          onClick={() => setModalOpen(true)}
+          aria-haspopup="dialog"
+          aria-label={`View ${project.title} screenshots`}
+          className="block cursor-zoom-in text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy dark:focus-visible:outline-sky-500"
+        >
+          <CardThumbnail project={project} />
+        </button>
+      ) : (
+        <CardThumbnail project={project} />
+      )}
+
       {project.badge ? (
         <p className="mb-4 font-mono text-xs tracking-wider text-gray-400 dark:text-gray-500">
           {project.badge}
@@ -262,7 +327,7 @@ function ProjectCard({ project }: { project: Project }) {
 
       {project.tech ? <TechLine tech={project.tech} /> : null}
 
-      {project.caseStudy ? (
+      {project.caseStudy || hasGallery ? (
         <CaseStudyModal
           project={project}
           open={modalOpen}
