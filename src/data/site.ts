@@ -252,7 +252,7 @@ export const projects: Project[] = [
       "An AI-assisted short-form video editor I built for my own gym, fashion, and vlog content. I write a brief, Claude plans the edit, and the pipeline cuts, captions, and renders the video automatically. Now evolving into a standalone app with its own UI.",
     icon: Clapperboard,
     tech: ["Claude Code", "FFmpeg", "Whisper", "OpenCV", "Puppeteer"],
-    href: "",
+    href: "https://github.com/JT-TEGA/cutroom",
     linkLabel: "GitHub",
     status: "In Progress",
     kind: "code",
