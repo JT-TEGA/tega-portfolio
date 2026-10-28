@@ -336,7 +336,7 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
-    role: "Marketing & Sales Assistant",
+    role: "Marketing & Sales Associate",
     company: "Maxmode Gadgets, Lagos",
     period: "2022",
     icon: ShoppingBag,
